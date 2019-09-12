@@ -6,3 +6,5 @@
 
 需要根据这里的方法安装必要环境
 https://matrix3d.github.io/fbx/2019/08/25/fbxsdk
+
+用py2exe打包，用http://www.xiconeditor.com/ 生成ico
