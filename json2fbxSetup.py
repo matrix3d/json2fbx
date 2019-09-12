@@ -18,7 +18,7 @@ options = {
 
 setup(
     options=options,    
-    description = "this is a py2exe test",   
+    description = "json2fbx",   
     zipfile=None,
     #console = [{"script":'Json2fbx.py'}])
     console = [{"script":'Json2fbx.py',"icon_resources":[(1,"favicon.ico")]}])
