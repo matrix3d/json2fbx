@@ -8,3 +8,7 @@
 https://matrix3d.github.io/fbx/2019/08/25/fbxsdk
 
 用py2exe打包，用http://www.xiconeditor.com/ 生成ico
+
+###model3d
+
+http://lizhi.gitee.io/idewww/model3d/model3d.exe
