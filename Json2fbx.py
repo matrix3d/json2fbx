@@ -262,9 +262,14 @@ def LinkPatchToSkeleton():
         skin=load_dict["skin"][obj["skin"]]
         geom=load_dict["geom"][obj["geom"]]
         js=skin["joint"]
-        jd=geom["joint"]
-        wd=geom["weight"]
-        l=int(len(geom["pos"])/3)
+        if "source" in geom:
+            jd=geom["source"]["joint"]
+            wd=geom["source"]["weight"]
+            l=int(len(geom["source"]["pos"])/3)
+        else:
+            jd=geom["joint"]
+            wd=geom["weight"]
+            l=int(len(geom["pos"])/3)
         stepJ=int(len(jd)/l)
         clusters={}
         for i in range(l):
@@ -299,7 +304,7 @@ def parserM5(obj):
                     node.SetControlPointAt(FbxVector4(pos[i*3],pos[i*3+1],pos[i*3+2]),i)
                 for a in geom["source"]["index"]:
                     node.BeginPolygon(-1, -1, False)
-                    for b in a:
+                    for b in reversed(a):
                         node.AddPolygon(b)
                     node.EndPolygon()
             else:
@@ -341,7 +346,7 @@ def parserM5(obj):
                     node.AddPolygon(index[i*3+2])
                     node.AddPolygon(index[i*3+1])
                     node.EndPolygon()
-                geoms.append(node)
+            geoms.append(node)
     if "mat" in obj:
         for mat in obj["mat"]:
             mats.append(mat)        
@@ -398,7 +403,6 @@ if load_dict["magic"]=="m5":
     parserM5(load_dict)
 lRootNode = lScene.GetRootNode()
 lRootNode.AddChild(target)
-
 lResult = SaveScene(lSdkManager, lScene, filepath.replace(".json",".fbx"),lSdkManager.GetIOPluginRegistry().GetNativeWriterFormat(),True)
 print(lResult)
 
