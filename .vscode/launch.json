@@ -11,7 +11,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "logToFile": false,
-            "args2": ["C:\\Users\\li456\\Desktop\\linkProject\\Mesh\\linkSkel_V001_002__.json"]
+            "args": []
         }
     ]
 }

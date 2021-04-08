@@ -396,7 +396,7 @@ if len(sys.argv)>1:
     filepath=sys.argv[1]
 else:
     filepath="mesh.json"
-with open(filepath,"r") as f:
+with open(filepath,"r",encoding='UTF-8') as f:
     load_dict=json.load(f)
     print(load_dict["magic"])
 if load_dict["magic"]=="m5":
