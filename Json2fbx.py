@@ -304,7 +304,8 @@ def parserM5(obj):
                     node.SetControlPointAt(FbxVector4(pos[i*3],pos[i*3+1],pos[i*3+2]),i)
                 for a in geom["source"]["index"]:
                     node.BeginPolygon(-1, -1, False)
-                    for b in reversed(a):
+                    for b in a:
+                    #for b in reversed(a):
                         node.AddPolygon(b)
                     node.EndPolygon()
             else:
@@ -343,8 +344,8 @@ def parserM5(obj):
                     node.BeginPolygon(-1, -1, False)
                     lTextureDiffuseLayer.GetIndexArray().SetAt(i,0)
                     node.AddPolygon(index[i*3])
-                    node.AddPolygon(index[i*3+2])
                     node.AddPolygon(index[i*3+1])
+                    node.AddPolygon(index[i*3+2])
                     node.EndPolygon()
             geoms.append(node)
     if "mat" in obj:
@@ -403,6 +404,17 @@ if load_dict["magic"]=="m5":
     parserM5(load_dict)
 lRootNode = lScene.GetRootNode()
 lRootNode.AddChild(target)
-lResult = SaveScene(lSdkManager, lScene, filepath.replace(".json",".fbx"),lSdkManager.GetIOPluginRegistry().GetNativeWriterFormat(),True)
-print(lResult)
+lResult = SaveScene(lSdkManager, lScene, filepath.replace(".json","_new.fbx"),lSdkManager.GetIOPluginRegistry().GetNativeWriterFormat(),True)
+#print(lResult)
 
+#print(lScene.GetGlobalSettings().GetAxisSystem().GetUpVector())
+#axis_system = FbxAxisSystem(FbxAxisSystem.eMayaZUp)
+#print(FbxAxisSystem)
+#print(axis_system)
+#axis_system.ConvertScene(lScene)
+#print(lScene.GetGlobalSettings().GetAxisSystem().GetUpVector())
+#lResult = SaveScene(lSdkManager, lScene, filepath.replace(".json","_eOpenGL.fbx"),lSdkManager.GetIOPluginRegistry().GetNativeWriterFormat(),True)
+#root_node = scene.GetRootNode()
+#scene_units = fbx.FbxSystemUnit.cm 
+#scene_units.ConvertScene(scene)
+#print(lResult)
